@@ -1,0 +1,38 @@
+# Build output
+*.o
+*.bin
+*.elf
+*.iso
+*.img
+*.dis
+build/
+obj/
+isodir/
+
+# Disk images
+*.flp
+*.vdi
+*.vmdk
+*.qcow2
+
+# Debug
+*.log
+*.map
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.kate-swp
+.project
+.cproject
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# PDF / docs (tracked separately, too large for git)
+*.pdf
+yml.md
