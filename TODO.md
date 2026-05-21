@@ -8,12 +8,12 @@ hardware-software interaction, and OS architecture.
 
 ## PHASE 0: PREREQUISITES AND ENVIRONMENT SETUP
 
-- [ ] **0.1** Review C programming (pointers, structs, bitwise operations)
+- [ ✔️ ] **0.1** Review C programming (pointers, structs, bitwise operations)
       - Write: simple linked list, bit manipulation examples
-- [ ] **0.2** Learn basic x86 Assembly (NASM)
+- [ ✔️ ] **0.2** Learn basic x86 Assembly (NASM)
       - Write: "Hello World" in Assembly
       - Learn: `mov`, `jmp`, `cmp`, `int`, `push`, `pop` instructions
-- [ ] **0.3** Set up development environment
+- [ ✔️ ] **0.3** Set up development environment
       - Install:
         - `nasm` (assembler)
         - `qemu` (virtual machine for testing)
