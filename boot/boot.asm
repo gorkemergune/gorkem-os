@@ -27,3 +27,5 @@ print_string:
 section .data
 kernel_msg db 'Loading kernel...', 0
 
+
+
