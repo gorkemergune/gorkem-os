@@ -8,12 +8,12 @@ hardware-software interaction, and OS architecture.
 
 ## PHASE 0: PREREQUISITES AND ENVIRONMENT SETUP
 
-- [ ✔️ ] **0.1** Review C programming (pointers, structs, bitwise operations)
+- [✔] **0.1** Review C programming (pointers, structs, bitwise operations)
       - Write: simple linked list, bit manipulation examples
-- [ ✔️ ] **0.2** Learn basic x86 Assembly (NASM)
+- [✔] **0.2** Learn basic x86 Assembly (NASM)
       - Write: "Hello World" in Assembly
       - Learn: `mov`, `jmp`, `cmp`, `int`, `push`, `pop` instructions
-- [ ✔️ ] **0.3** Set up development environment
+- [✔] **0.3** Set up development environment
       - Install:
         - `nasm` (assembler)
         - `qemu` (virtual machine for testing)
@@ -21,9 +21,9 @@ hardware-software interaction, and OS architecture.
         - `make` (build system)
         - `gdb` (debugger)
       - Write: `Makefile` template
-- [ ] **0.4** First QEMU test
+- [✔] **0.4** First QEMU test
       - Create an empty disk image, boot it in QEMU, observe what happens
-- [ ] **0.5** Initialize git repo
+- [✔] **0.5** Initialize git repo
       - Set up `.gitignore` (exclude *.o, *.bin, *.iso)
       - First commit: "Initial project setup"
 
@@ -74,24 +74,24 @@ hardware-software interaction, and OS architecture.
 ## PHASE 3: WRITING THE BOOTLOADER
 > Corresponds to book chapter 7 — FIRST MAJOR MILESTONE
 
-- [ ] **3.1** Understand the x86 boot process
+- [✔] **3.1** Understand the x86 boot process
       - BIOS -> MBR (first 512 bytes) -> Bootloader chain
       - The 0x7C00 address and its significance
       - Magic number: 0xAA55
-- [ ] **3.2** Learn BIOS services
+- [✔] **3.2** Learn BIOS services
       - INT 0x10 (display), INT 0x13 (disk), INT 0x15 (memory)
-- [ ] **3.3** Write the first bootloader (Assembly)
+- [✔] **3.3** Write the first bootloader (Assembly)
       - File: `boot/boot.asm`
       - A 512-byte bootloader that prints "Booting GorkemOS..."
       - Test in QEMU
-- [ ] **3.4** Load a program from the bootloader
+- [✔] **3.4** Load a program from the bootloader
       - Bootloader that loads the kernel from disk into memory
       - File: `boot/boot.asm` (extended)
-- [ ] **3.5** Transition from Real Mode to Protected Mode
+- [✔] **3.5** Transition from Real Mode to Protected Mode
       - Create a GDT (Global Descriptor Table)
       - Write the 16-bit to 32-bit mode switch code
       - File: `boot/gdt.asm`
-- [ ] **3.6** Set up the build system
+- [✔] **3.6** Set up the build system
       - File: `Makefile`
       - `make run` compiles and launches QEMU automatically
 
@@ -100,19 +100,19 @@ hardware-software interaction, and OS architecture.
 ## PHASE 4: LINKING AND BARE METAL PROGRAMMING
 > Corresponds to book chapter 8
 
-- [ ] **4.1** Understand relocations
+- [✔] **4.1** Understand relocations
       - Inspect relocation tables with `readelf`
-- [ ] **4.2** Learn to write linker scripts
+- [✔] **4.2** Learn to write linker scripts
       - File: `linker.ld`
       - Define where the kernel gets loaded in memory
-- [ ] **4.3** Understand freestanding C
+- [✔] **4.3** Understand freestanding C
       - Hosted vs Freestanding difference
       - Writing C code WITHOUT the standard library
       - `-ffreestanding`, `-nostdlib` flags
-- [ ] **4.4** Write the first bare metal C program
+- [✔] **4.4** Write the first bare metal C program
       - File: `kernel/main.c`
       - Print a message by writing directly to the VGA text buffer
-- [ ] **4.5** Bootloader + Kernel integration
+- [✔] **4.5** Bootloader + Kernel integration
       - Bootloader loads kernel and hands over control
       - Test the full boot chain end to end
 
@@ -121,21 +121,21 @@ hardware-software interaction, and OS architecture.
 ## PHASE 5: KERNEL FUNDAMENTALS
 > Corresponds to book chapter 9
 
-- [ ] **5.1** Understand kernel-space vs user-space
+- [✔] **5.1** Understand kernel-space vs user-space
       - Ring 0 (kernel) vs Ring 3 (user) separation
-- [ ] **5.2** Implement segment descriptors
+- [✔] **5.2** Implement segment descriptors
       - Rewrite GDT in C
-      - Files: `kernel/gdt.c`, `kernel/gdt.h`
-- [ ] **5.3** Write the display module (VGA driver)
-      - Files: `drivers/vga.c`, `drivers/vga.h`
+      - Files: `kernel/gdt.c`, `include/gdt.h`
+- [✔] **5.3** Write the display module (VGA driver)
+      - Files: `drivers/vga.c`, `include/vga.h`
       - Functions: `vga_print()`, `vga_clear()`, `vga_newline()`
       - Color support
       - Screen scrolling
-- [ ] **5.4** Write string utilities (your own libc)
-      - Files: `lib/string.c`, `lib/string.h`
+- [✔] **5.4** Write string utilities (your own libc)
+      - Files: `lib/string.c`, `include/string.h`
       - `strlen`, `strcmp`, `strcpy`, `memset`, `memcpy`
-- [ ] **5.5** Write number-to-string conversion
-      - `itoa`, a simple `printf`-like function
+- [✔] **5.5** Write number-to-string conversion
+      - `itoa`, a simple `printf`-like function (`kprintf`)
       - File: `lib/print.c`
 
 ---
@@ -143,51 +143,53 @@ hardware-software interaction, and OS architecture.
 ## PHASE 6: INTERRUPT HANDLING
 > Corresponds to book chapter 11
 
-- [ ] **6.1** Understand interrupts
+- [✔] **6.1** Understand interrupts
       - Hardware interrupt vs Software interrupt
       - What is an IRQ, what is PIC (Programmable Interrupt Controller)
-- [ ] **6.2** Create the IDT (Interrupt Descriptor Table)
-      - Files: `kernel/idt.c`, `kernel/idt.h`
+- [✔] **6.2** Create the IDT (Interrupt Descriptor Table)
+      - Files: `kernel/idt.c`, `include/idt.h`
       - 256 interrupt entries
-- [ ] **6.3** Write ISRs (Interrupt Service Routines)
-      - Files: `kernel/isr.c`, `kernel/isr.asm`
+- [✔] **6.3** Write ISRs (Interrupt Service Routines)
+      - Files: `kernel/idt.c`, `kernel/isr_stubs.asm`
       - CPU exception handlers (division by zero, page fault, etc.)
-- [ ] **6.4** Program the PIC
+- [✔] **6.4** Program the PIC
       - Configure the 8259 PIC
-      - Remap IRQs
+      - Remap IRQs (0-15 -> 32-47)
       - File: `kernel/pic.c`
-- [ ] **6.5** Set up the timer (PIT)
-      - Configure the Programmable Interval Timer
+- [✔] **6.5** Set up the timer (PIT)
+      - Configure the Programmable Interval Timer (100 Hz)
       - Tick counter for basic timekeeping
       - File: `drivers/timer.c`
-- [ ] **6.6** Write the keyboard driver
+- [✔] **6.6** Write the keyboard driver
       - File: `drivers/keyboard.c`
-      - Scan code -> ASCII conversion
-      - Read characters from keyboard input
+      - Scan code -> ASCII conversion (US layout)
+      - Circular buffer for keyboard input
+      - Shift key support
 
 ---
 
 ## PHASE 7: MEMORY MANAGEMENT
 > Corresponds to book chapter 12
 
-- [ ] **7.1** Understand physical memory management
+- [✔] **7.1** Understand physical memory management
       - Read the memory map from BIOS
       - Usable vs reserved memory regions
-- [ ] **7.2** Write the physical memory manager (PMM)
-      - Files: `kernel/pmm.c`, `kernel/pmm.h`
+- [✔] **7.2** Write the physical memory manager (PMM)
+      - Files: `kernel/pmm.c`, `include/pmm.h`
       - Bitmap-based page allocator
       - `pmm_alloc_page()` and `pmm_free_page()` functions
-- [ ] **7.3** Set up paging
+- [✔] **7.3** Set up paging
       - Page Directory and Page Table structures
       - Configure the CR3 register
-      - Files: `kernel/paging.c`, `kernel/paging.h`
-- [ ] **7.4** Write the virtual memory manager (VMM)
-      - Virtual address -> Physical address mapping
-      - Page fault handler
-- [ ] **7.5** Write the heap allocator (kmalloc)
+      - Identity map first 16 MB
+      - Files: `kernel/paging.c`, `include/paging.h`
+- [✔] **7.4** Write the virtual memory manager (VMM)
+      - Virtual address -> Physical address mapping (identity mapped)
+      - Page fault handler with error reporting
+- [✔] **7.5** Write the heap allocator (kmalloc)
       - File: `kernel/heap.c`
       - `kmalloc()`, `kfree()` functions
-      - Simple first-fit or buddy allocator
+      - First-fit allocator with block coalescing
 
 ---
 
@@ -233,15 +235,17 @@ hardware-software interaction, and OS architecture.
 ## PHASE 10: USER SHELL
 > Not in the book — your original contribution
 
-- [ ] **10.1** Write the command line interface
+- [✔] **10.1** Write the command line interface
        - File: `shell/shell.c`
        - Prompt: `gorkem> `
        - Read-parse-execute loop
-- [ ] **10.2** Implement basic commands
+- [✔] **10.2** Implement basic commands
        - `clear` — clear the screen
        - `help` — list available commands
        - `about` — show OS info
-       - `mem` — display memory status
+       - `mem` — display memory status (with visual bar)
+       - `uptime` — show system uptime
+       - `echo` — echo text
        - `reboot` — restart the system
        - `shutdown` — halt the system
 - [ ] **10.3** Add file commands (once file system is ready)
@@ -253,12 +257,14 @@ hardware-software interaction, and OS architecture.
 
 ## PHASE 11: EXTRAS AND POLISH
 
-- [ ] **11.1** Design the boot screen
+- [✔] **11.1** Design the boot screen
        - ASCII art "GorkemOS" logo
-       - Show version number and date
-- [ ] **11.2** Colored terminal output
-       - Support different text colors
+       - Show version number
+       - Boot status messages with [OK] indicators
+- [✔] **11.2** Colored terminal output
+       - Support different text colors (16 VGA colors)
        - Error messages in red, success messages in green
+       - Colored prompt (green username, cyan separator)
 - [ ] **11.3** System info command
        - CPU info (via CPUID instruction)
        - Total/used memory
@@ -278,13 +284,14 @@ hardware-software interaction, and OS architecture.
 gorkem-os/
 ├── boot/
 │   ├── boot.asm          # Bootloader (Assembly)
-│   └── gdt.asm           # GDT definitions (Assembly)
+│   └── gdt.asm           # GDT reference (Assembly)
 ├── kernel/
-│   ├── main.c            # Kernel entry point
+│   ├── kernel_entry.asm   # Kernel entry point (Assembly)
+│   ├── main.c            # Kernel main
 │   ├── gdt.c             # GDT (C side)
-│   ├── idt.c             # Interrupt Descriptor Table
-│   ├── isr.c             # Interrupt Service Routines
-│   ├── isr.asm           # ISR Assembly stubs
+│   ├── gdt_flush.asm     # GDT reload (Assembly)
+│   ├── idt.c             # Interrupt Descriptor Table + handlers
+│   ├── isr_stubs.asm     # ISR/IRQ Assembly stubs
 │   ├── pic.c             # PIC controller
 │   ├── pmm.c             # Physical memory manager
 │   ├── paging.c          # Paging
@@ -302,12 +309,26 @@ gorkem-os/
 │   └── gorkemfs.c        # File system implementation
 ├── lib/
 │   ├── string.c          # String functions
-│   └── print.c           # printf-like function
+│   └── print.c           # printf-like function (kprintf)
 ├── shell/
 │   └── shell.c           # Command line interface
 ├── include/              # Header files (.h)
+│   ├── types.h           # Basic type definitions
+│   ├── io.h              # I/O port access
+│   ├── vga.h             # VGA driver header
+│   ├── string.h          # String utilities header
+│   ├── print.h           # Print utilities header
+│   ├── gdt.h             # GDT header
+│   ├── idt.h             # IDT header
+│   ├── isr.h             # ISR declarations
+│   ├── timer.h           # Timer header
+│   ├── keyboard.h        # Keyboard header
+│   ├── pmm.h             # PMM header
+│   ├── paging.h          # Paging header
+│   ├── heap.h            # Heap header
+│   └── shell.h           # Shell header
 ├── linker.ld             # Linker script
-├── Makefile              # Build system
+├── makefile              # Build system
 ├── TODO.md               # This file
 └── README.md             # Project overview
 ```
